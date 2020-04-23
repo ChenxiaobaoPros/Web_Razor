@@ -1,0 +1,41 @@
+﻿1、创建Model
+2、创建基架 =>Pages=>添加=>新建基架项目=>选择Razor Pages(CRUD)
+3、选择映射的Model =>创建 
+	=>编译器会自动生成创建、删除、详细信息、编辑、索引页面和Data/Web_RazorContext上下文
+	=>appsettings.json 文件通过用于连接到本地数据的连接字符串进行更新。
+4、通过NuGet包管理器控制台=>初始迁移()
+	=>命令:
+		Add-Migration InitialCreate
+		Update-Database
+		生成时会报警告信息No Type Was specified for ....
+		修复办法:
+		到现在为止还是基于本地数据片段
+5、	@page 指令 
+	@model 指令
+	ViewData(将数据传到视图) 和布局
+	@*Markup removed for brevity.*@ 注释
+	*****<form method="post"> 元素是一个表单标记帮助程序。 表单标记帮助程序会自动包含防伪令牌。******
+6、使用数据库
+	appsettings.json 中连接字符串可以连接到正式数据库。
+
+	LocalDB 是轻型版的 SQL Server Express 数据库引擎，以程序开发为目标。 LocalDB 作为按需启动并在用户模式下运行的轻量级数据库没有复杂的配置。 
+	默认情况下，LocalDB 数据库在 C:\Users\<user>\ 目录下创建 *.mdf 文件。
+	视图=>Sql对象资源管理器 =>展示数据库
+
+	添加数据库种子=>Models=>添加SeedData
+	设置SeedData初始值=>Program
+		从依赖关系注入容器获取数据库上下文实例。
+		调用 seed 方法，并将上下文传递给它。
+		Seed 方法完成时释放上下文。
+
+7、如果想要更新页面数据(字段名字、字段数据参数范围) 使用特性
+8、添加搜索
+9、添加新字段
+	命令:
+		Add-Migration Rating  =>Rating是字段名称
+		Update-Database
+10、添加验证 =>使用特性
+	更新数据基架
+		命令:	
+			Add-Migration New_DataAnnotations
+			Update-Database
